@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="text-success text-center">Comment List</h4>
+
+    <input
+      #inputValue
+      class="form-control"
+      type="number"
+      placeholder="Enter number of comments..."
+      (keyup.enter)="onClick(inputValue.value); inputValue.value=''"
+    >
+  </div>
+
+  <div class="card-body">
+    <table class="table table-bordered text-center" *ngIf="myDisplaycomment.length > 0">
+      <thead>
+        <tr>
+          <th>Sr No</th>
+          <th>Full Name</th>
+          <th>User Name</th>
+          <th>Body</th>
+          <th>Likes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let comment of myDisplaycomment; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ comment.user?.fullName }}</td>
+          <td>{{ comment.user?.username }}</td>
+          <td>{{ comment.body }}</td>
+          <td>{{ comment.likes }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="myDisplaycomment.length === 0" class="text-danger text-center mt-3">
+      No Data Found
+    </div>
+  </div>
+</div>
